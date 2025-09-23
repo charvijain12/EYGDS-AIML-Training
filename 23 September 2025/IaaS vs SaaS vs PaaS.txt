@@ -1,0 +1,51 @@
+IaaS vs PaaS vs SaaS
+
+Services offered by cloud platforms: 
+Applications
+Data
+Runtime
+Middleware
+O/S
+Virtualization
+Servers
+Storage
+Networking
+
+
+In IaaS –
+IaaS is used by network architects.
+IaaS gives access to the resources like virtual machines and virtual storage.
+It is a service model that provides virtualized computing resources over the internet.
+It is popular among developers and researchers.
+Usage - Used by the skilled developer to develop unique applications.
+Cloud services - Amazon Web Services, sun, vCloud Express.
+Enterprise services - AWS virtual private cloud.
+Outsourced cloud services - Salesforce
+User Controls - Operating System, Runtime, Middleware, and Application data
+It is highly scalable and flexible.
+
+
+In PaaS - 
+PaaS is used by developers.
+PaaS gives access to run time environment to deployment and development tools for application.
+It is a cloud computing model that delivers tools that are used for the development of applications.
+It is popular among developers who focus on the development of apps and scripts.
+Usage - Used by mid-level developers to build applications.
+Cloud services - Facebook, and Google search engine.
+Enterprise Service - Microsoft Azure.
+Outsourced cloud services - Force.com, Gigaspaces.
+User Controls - Data of the application
+It is highly scalable to suit the different businesses according to resources.
+
+In SaaS - 
+SaaS is used and access is given to the end user.
+It is a service model in cloud computing that hosts software to make it available to clients.
+It is popular among consumers and companies, such as file sharing, email, and networking.
+Used among the users of entertainment.
+Cloud services - MS Office web, Facebook and Google Apps.
+Enterprise services - IBM cloud analysis.
+Outsourced cloud services - AWS, Terremark
+User doesn't have to control anything
+It is highly scalable to suit the small, mid and enterprise level business
+
+
