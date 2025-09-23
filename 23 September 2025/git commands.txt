@@ -1,0 +1,16 @@
+GIT COMMANDS
+COMMANDS                  DESCRIPTION
+git init                  To initialize a new git repository
+git config                To configure git
+git help                  To get help with git commands
+git merge                 To merge a branch into current one
+git commit -m “message”   Commit changes with a message
+git clone                 To clone a git repository
+git add                   To stage a file
+git pull origin           To pull latest changes
+git reset                 To un-stage a file
+git remote -v             To show remote URLs
+git log                   To show commit history
+git status                To check repo status
+git branch                To create a new branch
+git checkout              Switch to branch
