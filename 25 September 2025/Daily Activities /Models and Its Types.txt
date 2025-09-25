@@ -52,7 +52,6 @@ Models and its Types
   • Recurrent Neural Networks (RNN) - Ananlyze sequential data like time series forecasting.
   • Transformers - Handles language tasks like text summarization etc. and power models like GPT.
 
-
 • Generative Models
   Advances models that can create new content, from relaistic images to human-like text, by learning data distributions. 
   Examples - 
