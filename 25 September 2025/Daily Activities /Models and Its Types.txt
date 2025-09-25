@@ -1,0 +1,61 @@
+Models and its Types
+
+• What are Models?
+  Models are simplified mathematical or computational representations of real-world processes, used for analysis, prediction and understanding data patterns. 
+
+• Types of Models 
+  1. Statistical Models - Uses mathematical equations and probability to describe data or relationships.
+  2. Machine Learning Models - Algorithms that learn from data to predict and classify outcomes.
+  3. Deep Learning Models - A subtype of ML using neural networks with multiple layers for complex data and tasks.
+  4. Generative Models - Create new data similar to training data by learning data distributions.
+
+ • Statistical Models
+   They descibe real-world phenomena using assumptions about how data is generated, helping quantity relationships and predict future outcomes. 
+   Examples: 
+     • Linear Regression: Predicts continuous value.
+       There are two common types of linear regression - 
+       - simple linear regression (one independent variable) 
+       - multiple linear regression (two or more – multiple independent variables).
+       
+       Formula of simple linear regression: y = β0 + βx. 
+       In the formula, y is the dependent variable, x is the independent variable, β0 is the intercept and β is the slope.
+       Example : Predicting house prices based on size.
+
+       Formula of multiple linear regression: y = β0 + β1×1+ β2×2+…+βnxn. 
+       In the formula, y is the dependent variable, x is the independent vector of independent variables, 
+       β0 is the intercept, and β1, β1, …, βn are coefficients for respective features such as x1, x2, …, xn. 
+       Example : Predicting house prices based on multiple independent variables such as size, location, number of bedrooms.
+       
+     • Logistic Regression: Predicts probability for binary outcomes.
+       Example : Whether a customer will buy a product or not.
+
+• Machine Learning Models
+  ML models automatically learn from data examples to predict or classify unseen data.
+  The key advantage of ML is that it improves automatically through experience, making it suitable for solving complex problems where traditional programming fails.
+  Machine Learning can broadly be categorized into three main types:
+  1. Supervised Learning - It is a type of machine learning where the model is trained using a labeled dataset.
+     Examples - 
+     • Decision Trees ( Classify or predict outcomes in tree like structure), 
+     • Random Forest (Combining multiple Decision Trees for better accuracy)
+    
+  2. Unsupervised Learning - It is a type of ML where the data used for training is unlabelled. 
+     Examples - 
+     • K means Clustering (Find clusters or groups in data classes)
+     
+  3. Reinforcement Learning - It is a type of ML where an agent learns by interacting with its environment. 
+                              The agent takes actions, receives feedback in the form of rewards or penalties, and adjusts its strategy to maximize long-term rewards.
+                              
+• Deep Learning Models
+  Neural networks with multiple layers that can process complex data like images,text and sequences with human-like accuracy.
+  Examples - 
+  • Convolutional Neural Networks (CNN) - Processes images for tasks like face detections.
+  • Recurrent Neural Networks (RNN) - Ananlyze sequential data like time series forecasting.
+  • Transformers - Handles language tasks like text summarization etc. and power models like GPT.
+
+
+• Generative Models
+  Advances models that can create new content, from relaistic images to human-like text, by learning data distributions. 
+  Examples - 
+  • Generative Adversarial Networks (GAN) - Neural Network that creates realistic images, audios and text.
+  • Large Language Models (LLM) - These are designed to understand and generate human-like natural language text. Eg - ChatGPT
+  • Diffusion Models - Specialized in generating continuous data types such as images, audio and video. Eg - DALL-E
