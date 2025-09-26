@@ -1,1 +1,36 @@
-What is SQL
+1. What is SQL?
+
+SQL (Structured Query Language) databases are relational databases (RDBMS) that store data in tables with rows and columns. Data is structured, and relationships between tables are defined using keys.
+Examples: MySQL, PostgreSQL, Oracle, SQL Server
+
+2. What is NoSQL?
+
+NoSQL (Not Only SQL) databases are non-relational databases designed to store unstructured, semi-structured, or highly variable data. They use flexible data models such as key-value pairs, documents, wide-column stores, or graphs.
+Examples: MongoDB, Cassandra, Redis, Neo4j.
+
+3. When to Choose SQL vs NoSQL
+
++------------------+----------------------------+--------------------------------+
+|     Scenario     |            SQL             |            NoSQL               |
++------------------+----------------------------+--------------------------------+
+| Data structure   | Structured, fixed schema   | Flexible, dynamic schema       |
+| Scalability      | Vertical (bigger servers)  | Horizontal (add more servers)  |
+| Transactions     | Strong ACID compliance     | Eventual consistency, fast     |
+| Querying         | Complex queries, joins     | Simple queries, fast retrieval |
+| Best for         | Banking, ERP, CRM,         | Social media, IoT, real-time   |
+|                  | inventory systems          | analytics, big data apps       |
++------------------+----------------------------+--------------------------------+
+
+4. Advantages of SQL
+	•	Structured & reliable: Strong schema ensures consistency.
+	•	ACID compliance: Safe for transactions (e.g., money transfers).
+	•	Powerful querying: Can handle complex joins and relationships.
+	•	Standardized: SQL is widely used, easy to learn, and supported by many tools.
+
+⸻
+
+5. Advantages of NoSQL
+	•	Flexible schema: Can handle unstructured and evolving data.
+	•	High scalability: Designed for distributed, large-scale applications.
+	•	Faster performance: Optimized for big data and real-time processing.
+	•	Variety of models: Key-value, document, column, graph – depending on use case.
