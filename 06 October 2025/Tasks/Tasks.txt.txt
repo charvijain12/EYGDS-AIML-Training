@@ -1,44 +1,84 @@
-import json
 import yaml
+import logging
+
+# Configure logging
+logging.basicConfig(filename='task_yaml.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+try:
+    with open('settings.yaml', 'r') as f:
+        config = yaml.safe_load(f)
+    logging.info("Config loaded successfully")
+
+    db = config['database']
+    print(f"Connecting to {db['host']}:{db['port']} as {db['user']}")
+
+except FileNotFoundError:
+    logging.error("settings.yaml not found")
+    print("Error: settings.yaml not found")
+
+except yaml.YAMLError as e:
+    logging.error(f"YAML parsing error: {e}")
+
+
+csv
 import csv
-import os
+import logging
 
-# -------- JSON File --------
-students = [
-    {"name": "Rahul", "age": 21, "course": "AI", "marks": 85},
-    {"name": "Priya", "age": 22, "course": "ML", "marks": 90}
-]
+# Configure logging
+logging.basicConfig(filename='task_csv.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-with open('data_students.json', 'w') as f:
-    json.dump(students, f, indent=4)
-print("✅ data_students.json created.")
+try:
+    with open('sales_data.csv', 'r') as f:
+        reader = csv.DictReader(f)
 
-# -------- YAML File --------
-config = {
-    'app': {
-        'name': 'Student Portal',
-        'version': 1.8
-    },
-    'database': {
-        'host': 'localhost',
-        'port': 3306,
-        'user': 'root'
-    }
-}
+        for row in reader:
+            try:
+                product = row['product']
+                price = float(row['price'])
+                quantity = int(row['quantity'])
+                total = price * quantity
+                print(f"{product} total = {int(total)}")
+                logging.info(f"{product} total sales {int(total)}")
+            except ValueError:
+                logging.error(f"Invalid numeric value in row: {row}")
 
-with open('settings.yaml', 'w') as f:
-    yaml.dump(config, f)
-print("✅ settings.yaml created.")
+except FileNotFoundError:
+    logging.error("sales_data.csv not found")
+    print("Error: sales_data.csv not found")
 
-# -------- CSV File --------
-csv_data = [
-    ['product', 'price', 'quantity'],
-    ['Laptop', 78000, 2],
-    ['Mouse', 500, 5],
-    ['Keyboard', 1200, 3]
-]
+json
 
-with open('sales_data.csv', 'w', newline='') as f:
-    writer = csv.writer(f)
-    writer.writerows(csv_data)
-print("✅ sales_data.csv created.")
+import json
+import logging
+
+# Configure logging
+logging.basicConfig(filename='task_json.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+try:
+    # Step 1: Read JSON file
+    with open('data_students.json', 'r') as f:
+        students = json.load(f)
+    logging.info("File read successful")
+
+    # Step 2: Print all student names
+    print("Student Names:")
+    for s in students:
+        print(s["name"])
+
+    # Step 3: Add a new student
+    new_student = {"name": "Arjun", "age": 20, "course": "Data Science", "marks": 78}
+    students.append(new_student)
+    logging.info("Student added")
+
+    # Step 4: Save back to same file
+    with open('data_students.json', 'w') as f:
+        json.dump(students, f, indent=4)
+    logging.info("File saved successfully")
+
+except FileNotFoundError:
+    logging.error("data_students.json file not found")
+except json.JSONDecodeError:
+    logging.error("Error decoding JSON file")
