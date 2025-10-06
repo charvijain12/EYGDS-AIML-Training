@@ -1,1 +1,44 @@
-tasks
+import json
+import yaml
+import csv
+import os
+
+# -------- JSON File --------
+students = [
+    {"name": "Rahul", "age": 21, "course": "AI", "marks": 85},
+    {"name": "Priya", "age": 22, "course": "ML", "marks": 90}
+]
+
+with open('data_students.json', 'w') as f:
+    json.dump(students, f, indent=4)
+print("✅ data_students.json created.")
+
+# -------- YAML File --------
+config = {
+    'app': {
+        'name': 'Student Portal',
+        'version': 1.8
+    },
+    'database': {
+        'host': 'localhost',
+        'port': 3306,
+        'user': 'root'
+    }
+}
+
+with open('settings.yaml', 'w') as f:
+    yaml.dump(config, f)
+print("✅ settings.yaml created.")
+
+# -------- CSV File --------
+csv_data = [
+    ['product', 'price', 'quantity'],
+    ['Laptop', 78000, 2],
+    ['Mouse', 500, 5],
+    ['Keyboard', 1200, 3]
+]
+
+with open('sales_data.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerows(csv_data)
+print("✅ sales_data.csv created.")
