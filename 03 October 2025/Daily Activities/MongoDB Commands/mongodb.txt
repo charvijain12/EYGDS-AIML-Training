@@ -1,3 +1,0 @@
-MongoDB is an open source NoSQL document database.
-it stores data in a type of of JSON format called BSON.
-field values may be - numbers, strings, booleans,array,even nested docs.
