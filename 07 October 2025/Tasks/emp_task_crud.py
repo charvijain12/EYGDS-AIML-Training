@@ -45,12 +45,12 @@ def updated_employee(employees_id:int, updated_employee: Employee):
 @app.delete("/employees/{employees_id}")
 def delete_employee(employees_id:int):
     for i, emp in enumerate(employees):
-        if emp["employees_id"]==employees_id:
+        if emp["id"]==employees_id:
             deleted_employee=employees.pop(i)
             return {
                 "message":f"Employee with ID{employees_id} deleted successfully",
                 "deleted_employee": deleted_employee
             }
-    raise HTTPException(status_code=404,detail=f"employee with ID {employee_id} not found")
+    raise HTTPException(status_code=404,detail=f"employee with ID {employees_id} not found")
 
 
