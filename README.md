@@ -1,2 +1,3 @@
 # EY GDS-AIML-Training
-This repository contains day-wise folders capturing all activities and tasks completed during the EY-GDS AIML training.
+
+EY GDS Data & AI Training tracker featuring date-wise folders documenting daily activities, tasks, and hands-on learning progress.
