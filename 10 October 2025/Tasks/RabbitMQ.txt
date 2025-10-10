@@ -20,15 +20,23 @@ Features of queues:
 --------------------------------------------------------------------------------------------------------------------------------------
 REALTIME USE CASES
 
-RabbitMQ Use
-	1.	E-commerce (e.g., Nykaa, Amazon, Flipkart)
-	•	Handles orders, payment processing, inventory updates, and notifications asynchronously.
-	2.	Online Food Delivery (e.g., Zomato, Swiggy, Uber Eats)
-	•	Manages orders, restaurant updates, delivery assignment, and real-time notifications.
-	3.	Online Gaming (e.g., PUBG, Call of Duty)
-	•	Handles matchmaking, in-game events, score updates, and notifications for millions of players.
-	4.	Banking & FinTech (e.g., Paytm, Stripe, Revolut)
-	•	Processes transactions, fraud detection alerts, account updates, and notifications reliably.
-	5.	IoT / Smart Devices (e.g., Smart Homes, Wearables)
-	•	Collects and processes sensor data, device alerts, and automation tasks asynchronously.
+1. E-commerce 
+			Handles orders, payment processing, inventory updates, and notifications asynchronously.
+			e.g., Nykaa, Amazon, Flipkart
 
+2. Online Food Delivery 
+						Manages orders, restaurant updates, delivery assignment, and real-time notifications.
+						e.g., Zomato, Swiggy, Uber Eats 
+
+3. Online Gaming
+				Handles matchmaking, in-game events, score updates, and notifications for millions of players.
+				e.g., Ludo, PUBG
+
+4. Banking & FinTech 
+					Processes transactions, fraud detection alerts, account updates, and notifications reliably.
+					e.g., PayTM Bank Apps 
+
+5. IoT / Smart Devices 
+					   Collects and processes sensor data, device alerts, and automation tasks asynchronously.
+
+--------------------------------------------------------------------------------------------------------------------------------------
