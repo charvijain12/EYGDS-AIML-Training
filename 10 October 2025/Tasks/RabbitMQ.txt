@@ -1,0 +1,22 @@
+WHAT IS RabbitMQ?
+
+It is a message broker,
+Software that lets different parts of a system send and receive messages between each other asynchronously,
+it receives, stores annd delivers messages between systems or services,
+RabbitMQ is written on Erlang(a programming language) which uses OTP to handle concurrency, fault tolerance and clustering featres.
+Supports several messaging protocols, commonly used with Advanced Messge Queuing Protocol (AMQP)
+--------------------------------------------------------------------------------------------------------------------------------------
+WHY USE QUEUES IN A RELATIME SYSTEM?
+
+Queues in RabbitMQ helps to handle communication between Producers(Senders) and Consumers(Receivers) efficiently and reliably.
+Features of queues:
+1. Decoupling - Sender and receiver can work independently 
+2. Load Balancing - Incase of many consumers using the system, it evenly distributes messages between them
+3. Reliable/Persistent - Data is stored safely, no data loss incase of service crash also
+4. Async Processing - Producers can keep working without waiting for consumers to finish
+5. Scalibility - easy to add more consumers
+6. Flow Control - queues act like buffers to avoid system overloads
+
+--------------------------------------------------------------------------------------------------------------------------------------
+REALTIME USE CASES
+
