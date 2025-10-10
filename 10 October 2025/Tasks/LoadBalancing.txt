@@ -1,0 +1,71 @@
+Load Balancing
+
+Overview
+
+Load balancing is a technique used to distribute incoming network or application traffic evenly across multiple servers or resources.
+The goal is to ensure that no single server becomes a bottleneck, improving overall performance, reliability, and scalability.
+
+Load balancers act as intermediaries between clients and servers, routing requests according to specific algorithms or strategies.
+
+⸻
+
+Common Load Balancing Strategies
+
+1. Round Robin
+
+Description:
+Requests are distributed sequentially across the available servers in order. Once the last server in the list is reached, the load balancer loops back to the first.
+
+Use Case:
+Works best when all servers have similar capacity and performance.
+
+Example:
+If there are three servers (A, B, and C), the requests are assigned as follows:
+A → B → C → A → B → C → …
+
+Pros:
+	•	Simple to implement
+	•	Ensures even distribution over time
+
+Cons:
+	•	Does not account for server load or active connections
+
+⸻
+
+2. Least Connections
+
+Description:
+The load balancer directs traffic to the server currently handling the fewest active connections.
+
+Use Case:
+Ideal when connections vary in duration or load (e.g., database queries, long-lived sessions).
+
+Example:
+If Server A has 10 active connections and Server B has 3, the next request goes to Server B.
+
+Pros:
+	•	Dynamically adapts to traffic patterns
+	•	Distributes load more efficiently under varying workloads
+
+Cons:
+	•	Requires tracking connection counts in real time
+
+⸻
+
+3. Random
+
+Description:
+Each new request is assigned to a server selected at random.
+
+Use Case:
+Suitable for environments where all servers have roughly equal capacity and workloads are evenly sized.
+
+Example:
+The load balancer randomly selects between servers A, B, and C for each new request.
+
+Pros:
+	•	Simple and lightweight
+	•	No state tracking needed
+
+Cons:
+	•	May lead to temporary imbalance due to random assignment
