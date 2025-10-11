@@ -1,8 +1,8 @@
 Load Balancing
 
-Load balancing is a technique used to distribute incoming network or application traffic evenly across multiple servers or resources.
-The goal is to ensure that no single server becomes a bottleneck, improving overall performance, reliability, and scalability.
-Load balancers act as intermediaries between clients and servers, routing requests according to specific algorithms or strategies.
+- It is a technique used to distribute incoming network or application traffic evenly across multiple servers or resources.
+- The goal is to ensure that no single server becomes a bottleneck, improving overall performance, reliability, and scalability.
+- Load balancers act as intermediaries between clients and servers, routing requests according to specific algorithms or strategies.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Common Load Balancing Strategies
