@@ -1,16 +1,22 @@
-A data pipeline is like a highway that carries data from where it’s created to where it’s needed — collecting, cleaning, and transforming it along the way. You can imagine it like a factory assembly line: raw data comes in at one end, gets refined through a series of processing steps, and comes out ready for use in reports, dashboards, or machine learning models.
-Typical Steps in a Data Pipeline
-•	Ingestion: Gather data from different sources such as databases, APIs, or sensor logs.
-•	Processing / Transformation: Clean, filter, and modify the data — for example, removing duplicates, converting formats, or adding derived values.
-•	Storage: Save the processed data into systems like a data warehouse or data lake.
-•	Consumption: Make the data available to analysts, data scientists, or apps that rely on it.
-Example:  
-Data from an e-commerce app (orders, payments, customers) is collected each day, cleaned and processed, then stored in a data warehouse like Snowflake. Analysts later use tools like Power BI to visualize sales and customer trends.
+A data pipeline
+- It is like a highway that carries data from where it’s created to where it’s needed — collecting, cleaning, and transforming it along the way. 
 
-ETL (Extract, Transform, Load) is a structured kind of data pipeline mainly focused on preparing data for analysis. It’s the process of taking data from different places, refining it, and loading it into a single, organized storage system.
+Steps in a Data Pipeline
+  •	Ingestion: Gather data from different sources such as databases, APIs, or sensor logs.
+  •	Processing / Transformation: Clean, filter, and modify the data — for example, removing duplicates, converting formats, or adding derived values.
+  •	Storage: Save the processed data into systems like a data warehouse or data lake.
+  •	Consumption: Make the data available to analysts, data scientists, or apps that rely on it.
+Example:  
+Data from an e-commerce app (orders, payments, customers) is collected each day, cleaned and processed, then stored in a data warehouse like Snowflake. 
+Analysts later use tools like Power BI to visualize sales and customer trends.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ETL (Extract, Transform, Load)
+- It is a structured kind of data pipeline mainly focused on preparing data for analysis. It’s the process of taking data from different places, refining it, and loading it into a single, organized storage system.
 ETL Steps
-•	Extract: Pull data from multiple sources — for instance, a MySQL database, a CSV file, or an API.
-•	Transform: Clean and rearrange the data — fix inconsistencies, combine tables, or compute summaries.
-•	Load: Move the transformed data into a target system, such as a data warehouse like Redshift, BigQuery, or Snowflake.
+  •	Extract: Pull data from multiple sources — for instance, a MySQL database, a CSV file, or an API.
+  •	Transform: Clean and rearrange the data — fix inconsistencies, combine tables, or compute summaries.
+  •	Load: Move the transformed data into a target system, such as a data warehouse like Redshift, BigQuery, or Snowflake.
 Example:  
 Extract customer and order data from MySQL and Salesforce → Transform it by joining on customer IDs and calculating total sales per region → Load it into Snowflake so it’s ready for analysis in business dashboards.
