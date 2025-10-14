@@ -1,0 +1,67 @@
+Capstone ETL Exercise: Sales Performance Analytics
+Pipeline
+Dataset 1 — products.csv
+ProductID,ProductName,Category,Price
+P101,Laptop,Electronics,800
+P102,Mouse,Accessories,20
+P103,Keyboard,Accessories,35
+P104,Smartphone,Electronics,600
+P105,Headphones,Audio,50
+Dataset 2 — customers.csv
+CustomerID,Name,Country,Segment
+C001,Neha,India,Individual
+C002,Ali,UAE,Corporate
+C003,John,USA,Individual
+C004,Sophia,UK,Small Business
+C005,Arjun,India,Corporate
+
+Dataset 3 — orders.csv
+OrderID,CustomerID,ProductID,Quantity,OrderDate
+O001,C001,P101,1,2024-10-12
+O002,C002,P104,2,2024-10-13
+O003,C001,P103,3,2024-10-15
+O004,C004,P105,5,2024-10-16
+O005,C005,P102,10,2024-10-17
+O006,C002,P101,1,2024-10-20
+O007,C003,P104,1,2024-10-21
+
+O008,C004,P102,4,2024-10-22
+O009,C001,P105,2,2024-10-23
+
+Your Task: sales_pipeline.py
+Write a complete ETL pipeline that performs the following steps:
+1. Extract
+Load all three CSV files into Pandas DataFrames: products , customers , and
+orders .
+2. Transform
+Perform the following transformations step-by-step:
+1. Join the datasets
+Join orders with customers (on CustomerID )
+Join the result with products (on ProductID )
+2. Add new calculated columns:
+TotalAmount = Quantity * Price
+OrderMonth (extract the month from OrderDate )
+3. Filter:
+Remove orders with Quantity < 2
+Only include customers from "India" or "UAE"
+4. Group and aggregate:
+Calculate total revenue per Category
+Calculate total revenue per Customer Segment
+5. Sorting & Ranking:
+Sort customers by total revenue (highest to lowest)
+3. Load
+Save the final enriched order data into processed_orders.csv
+Save the category-wise revenue summary into category_summary.csv
+Save the segment-wise revenue summary into segment_summary.csv
+Expected Output
+processed_orders.csv (Example):
+OrderID CustomerID Name Country Segment ProductName Category
+O002 C002 Ali UAE Corporate Smartphone Electronics
+O005 C005 Arjun India Corporate Mouse Accessories
+O009 C001 Neha India Individual Headphones Audio
+
+Hints for Students
+Use pd.merge() for joins
+Use df['col'].apply() or pd.to_datetime() for column transformations
+Use groupby() with agg() for revenue calculations
+Use sort_values() for ranking customers
