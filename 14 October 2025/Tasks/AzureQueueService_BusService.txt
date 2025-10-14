@@ -1,1 +1,40 @@
+Azure Queue Storage vs Azure Service Bus
 
+-------------------------------------------------------------------------------------------------------
+
+Azure Queue Storage:
+- A simple message queuing service that is part of Azure Storage.
+- Uses HTTP/HTTPS protocol for communication.
+- Does not guarantee message order (best-effort FIFO).
+- No built-in duplicate detection or transactions.
+- Message size limit is 64 KB.
+- At-least-once delivery guarantee.
+- Dead-lettering must be handled manually.
+- Simple FIFO mechanism with basic functionality.
+- Lower cost and ideal for basic decoupled communication between components.
+- Best for background jobs, simple message passing, and lightweight systems.
+
+Azure Service Bus:
+- An enterprise-grade messaging system designed for complex communication patterns.
+- Uses AMQP protocol (and also supports HTTP).
+- Supports FIFO via sessions and message ordering.
+- Includes built-in duplicate detection and transaction support.
+- Message size limit is 256 KB (Standard tier) or 1 MB (Premium tier).
+- Offers at-least-once and exactly-once delivery guarantees.
+- Has built-in dead-letter queues for handling undeliverable messages.
+- Provides advanced features like topics, subscriptions, message scheduling, and auto-forwarding.
+- More expensive but feature-rich and reliable for enterprise use cases.
+- Best for distributed systems, financial apps, and pub/sub communication models.
+
+-------------------------------------------------------------------------------------------------------
+
+When to use Azure Queue Storage:
+- When you need a simple, low-cost, and reliable queue.
+- When message order and duplication are not critical.
+- Suitable for background processing and lightweight communication between services.
+
+When to use Azure Service Bus:
+- When you need advanced messaging features like topics, subscriptions, and transactions.
+- When you need guaranteed message ordering or duplicate detection.
+- When your system requires dead-lettering or pub/sub patterns.
+- Ideal for enterprise applications, microservices, and critical workflows.
