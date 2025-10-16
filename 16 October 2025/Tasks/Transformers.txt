@@ -1,0 +1,52 @@
+Analysis of Transformers in AI/ML
+1. Introduction
+Transformers are a deep learning architecture introduced by Vaswani et al. in 2017 in the paper ‘Attention is All You Need’. They revolutionized Natural Language Processing (NLP) and later became the foundation for models like BERT, GPT, T5, and Vision Transformers (ViT). Unlike RNNs or LSTMs, transformers do not process data sequentially; instead, they use attention mechanisms to capture relationships between all words (or tokens) in a sequence simultaneously.
+
+2. Architecture Overview
+A Transformer has two main parts: the Encoder and the Decoder.
+
+• Encoder: Takes the input sequence and converts it into continuous representations. Each encoder block contains:
+ 1. Multi-Head Self-Attention
+ 2. Feed Forward Neural Network (FFNN)
+ 3. Add & Norm layers (for residual connections and normalization)
+
+• Decoder: Uses the encoder’s output to generate an output sequence. Each decoder block contains:
+ 1. Masked Multi-Head Self-Attention
+ 2. Encoder–Decoder Attention
+ 3. Feed Forward Network
+ 4. Add & Norm layers
+
+Models like GPT use only the decoder, while BERT uses only the encoder.
+
+3. Key Mechanism: Self-Attention
+Self-attention helps the model weigh the importance of different words in a sentence, regardless of their position. For example, in the sentence 'The animal didn’t cross the street because it was too tired,' the model learns that 'it' refers to 'the animal,' not 'the street.'
+
+Mathematically, attention is computed as:
+Attention(Q, K, V) = softmax((QK^T) / sqrt(d_k))V
+This allows the model to focus on relevant parts of the sequence dynamically.
+
+4. Positional Encoding
+Since transformers do not process sequences in order, they use positional encodings (sinusoidal or learned vectors) to retain information about the order of tokens.
+
+5. Advantages
+• Parallelization: Transformers process entire sequences simultaneously.
+• Long-Range Dependencies: Can capture relationships between distant words.
+• Scalability: Performs well with large datasets and compute power.
+• Transfer Learning: Pretrained models like BERT and GPT can be fine-tuned for specific tasks.
+
+6. Limitations
+• Computational Cost: Attention has O(n²) complexity, which is challenging for long sequences.
+• Data Hunger: Requires massive datasets to train effectively.
+• Interpretability: Hard to understand what the attention layers truly focus on.
+• Bias Amplification: Pretrained models can inherit or amplify data biases.
+
+7. Applications
+• NLP: Machine translation, text summarization, sentiment analysis, chatbots (e.g., GPT).
+• Vision: Vision Transformers (ViT) for image classification.
+• Audio: Speech recognition and music generation.
+• Multimodal: Models like CLIP and Gemini combine text, images, and audio.
+
+8. Modern Developments
+• Efficient Transformers: Longformer, Performer, Linformer (reduce attention cost).
+• Multimodal Transformers: Handle multiple data types.
+• Large Language Models (LLMs): GPT-4, Claude, Gemini — massively scaled transformers trained on diverse datasets.
