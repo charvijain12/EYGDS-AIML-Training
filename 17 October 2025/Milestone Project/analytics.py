@@ -1,0 +1,6 @@
+students = pd.read_csv('students.csv')
+marks = pd.read_csv('marks.csv')
+merged = pd.merge(students, marks, on='StudentID')
+merged['TotalMarks'] = merged[['Maths', 'Python', 'ML']].sum(axis=1)
+grouped = merged.groupby('Course').agg({'TotalMarks': ['mean', 'max']})
+print(grouped)
