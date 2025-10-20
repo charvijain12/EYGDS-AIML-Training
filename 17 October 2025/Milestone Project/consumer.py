@@ -4,40 +4,57 @@ import time
 import logging
 import os
 
-# Setup logs in task_5_logs
-log_folder = "task_5_logs"
-if not os.path.exists(log_folder):
-    os.makedirs(log_folder)
+# -------------------------
+# Paths (absolute)
+# -------------------------
+csv_file = "../marks.csv"             # marks.csv in parent folder
+log_file = "../task_5_logs/etl.log"  # existing folder in parent folder
+output_file = "../student_results.csv"  # output in parent folder
 
+# -------------------------
+# Setup logging
+# -------------------------
 logging.basicConfig(
-    filename=os.path.join(log_folder, "etl.log"),
+    filename=log_file,
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# Queue setup
-csv_queue = queue.Queue()
-csv_queue.put("marks.csv")
+logging.info("Consumer started")
 
+# -------------------------
+# Setup queue
+# -------------------------
+csv_queue = queue.Queue()
+csv_queue.put(csv_file)
+logging.info(f"[Producer] Added {csv_file} to queue")
+print(f"[Producer] Added {csv_file} to queue")
+
+# -------------------------
+# Process queue
+# -------------------------
 while not csv_queue.empty():
-    csv_file = csv_queue.get()
-    logging.info(f"[Consumer] Started processing {csv_file}")
-    print(f"[Consumer] Processing {csv_file}")
+    csv_path = csv_queue.get()
+    logging.info(f"[Consumer] Started processing {csv_path}")
+    print(f"[Consumer] Processing {csv_path}")
 
     try:
-        df = pd.read_csv(csv_file)
+        # Read CSV
+        df = pd.read_csv(csv_path)
+
+        # ETL: TotalMarks, Percentage, Result
         df['TotalMarks'] = df[['Maths','Python','ML']].sum(axis=1)
         df['Percentage'] = df['TotalMarks'] / 3
         df['Result'] = df['Percentage'].apply(lambda x: 'Pass' if x >= 50 else 'Fail')
 
-        output_file = "student_results.csv"
+        # Save processed results
         df.to_csv(output_file, index=False)
 
-        logging.info(f"[Consumer] Finished processing {csv_file}, saved to {output_file}")
+        logging.info(f"[Consumer] Finished processing {csv_path}, saved to {output_file}")
         print(f"[Consumer] Saved results to {output_file}")
 
     except Exception as e:
-        logging.error(f"[Consumer] Error processing {csv_file}: {e}")
+        logging.error(f"[Consumer] Error processing {csv_path}: {e}")
         print(f"[Consumer] Error: {e}")
 
     time.sleep(1)
