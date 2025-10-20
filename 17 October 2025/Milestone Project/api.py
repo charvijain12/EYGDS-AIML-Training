@@ -1,37 +1,24 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+# Initial student data
+students = [
+    {"StudentID": 101, "Name": "Neha", "Age": 21, "Course": "AI"},
+    {"StudentID": 102, "Name": "Arjun", "Age": 22, "Course": "ML"},
+    {"StudentID": 103, "Name": "Sophia", "Age": 20, "Course": "Data Science"},
+    {"StudentID": 104, "Name": "Ravi", "Age": 23, "Course": "AI"},
+    {"StudentID": 105, "Name": "Meena", "Age": 21, "Course": "ML"},
+]
 
-app = FastAPI()
+# Insert new student
+students.append({"StudentID": 106, "Name": "Amit", "Age": 22, "Course": "AI"})
 
-class Student(BaseModel):
-    StudentID: int
-    Name: str
-    Age: int
-    Course: str
+# Update a course
+for s in students:
+    if s["StudentID"] == 102:
+        s["Course"] = "AI"
 
-students_db = []
+# Delete a student
+students = [s for s in students if s["StudentID"] != 104]
 
-@app.get("/students")
-def get_students():
-    return students_db
+# Fetch students enrolled in "AI"
+ai_students = [s for s in students if s["Course"] == "AI"]
 
-@app.post("/students")
-def add_student(student: Student):
-    students_db.append(student)
-    return {"message": "Student added"}
-
-@app.put("/students/{student_id}")
-def update_student(student_id: int, student: Student):
-    for idx, s in enumerate(students_db):
-        if s.StudentID == student_id:
-            students_db[idx] = student
-            return {"message": "Student updated"}
-    raise HTTPException(status_code=404, detail="Student not found")
-
-@app.delete("/students/{student_id}")
-def delete_student(student_id: int):
-    for idx, s in enumerate(students_db):
-        if s.StudentID == student_id:
-            del students_db[idx]
-            return {"message": "Student deleted"}
-    raise HTTPException(status_code=404, detail="Student not found")
+print(ai_students)
