@@ -1,12 +1,25 @@
-import queue
+from fastapi import FastAPI, UploadFile
+import shutil
+import pika
 
-# Create a queue
-csv_queue = queue.Queue()
+app = FastAPI()
 
-# CSV files to process
-csv_files = ["marks.csv"]  # You can add more CSVs if needed
+# Connect to RabbitMQ
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+channel.queue_declare(queue='marks_queue')
 
-# Push CSV paths into queue
-for file in csv_files:
-    csv_queue.put(file)
-    print(f"[Producer] Added {file} to queue")
+@app.post("/upload_marks")
+async def upload_marks(file: UploadFile):
+    file_path = f"uploads/{file.filename}"  # Save uploaded file
+    with open(file_path, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+
+    # Send file path to RabbitMQ
+    channel.basic_publish(
+        exchange='',
+        routing_key='marks_queue',
+        body=file_path
+    )
+
+    return {"message": f"File {file.filename} uploaded and queued for processing"}
