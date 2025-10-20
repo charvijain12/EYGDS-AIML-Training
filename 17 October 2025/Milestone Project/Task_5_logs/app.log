@@ -1,0 +1,9 @@
+2025-10-20 22:18:30,001 - INFO - GET /students called
+2025-10-20 22:21:34,865 - INFO - GET /students called
+2025-10-20 22:22:35,368 - INFO - POST /students - Added student: 106
+2025-10-20 22:24:15,939 - INFO - PUT /students/106 - Updated student
+2025-10-20 22:24:57,112 - INFO - GET /students called
+2025-10-20 22:25:44,237 - WARNING - POST /students - Duplicate StudentID: 106
+2025-10-20 22:26:03,292 - INFO - POST /students - Added student: 107
+2025-10-20 22:26:44,251 - INFO - DELETE /students/107 - Deleted student
+2025-10-20 22:26:52,755 - WARNING - DELETE /students/107 - Student ID not found

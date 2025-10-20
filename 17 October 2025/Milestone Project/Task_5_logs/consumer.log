@@ -1,0 +1,26 @@
+2025-10-20 23:36:23,278 - INFO - Consumer started
+2025-10-20 23:37:28,424 - INFO - Consumer started
+2025-10-20 23:37:54,721 - INFO - Consumer started
+2025-10-20 23:39:35,592 - INFO - Consumer started
+2025-10-20 23:50:11,366 - INFO - Consumer started
+2025-10-20 23:50:11,377 - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-10-20 23:50:11,378 - INFO - Socket connected: <socket.socket fd=504, family=23, type=1, proto=6, laddr=('::1', 64628, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-20 23:50:11,378 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001656E6FD2B0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001656E6FD2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-10-20 23:50:11,382 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001656E6FD2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-20 23:50:11,382 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001656E6FD2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-20 23:50:11,382 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001656E6FD2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-20 23:50:11,383 - INFO - Created channel=1
+2025-10-20 23:50:11,385 - INFO - Consumer waiting for messages. Press CTRL+C to exit.
+2025-10-20 23:50:11,385 - INFO - Received uploads\marks.csv from queue
+2025-10-20 23:50:11,396 - INFO - Processed uploads\marks.csv \u2192 saved to C:\Users\user5\PycharmProjects\PythonProject\Capstone_project\Task_7\student_results.csv
+2025-10-20 23:57:21,747 - INFO - Consumer started
+2025-10-20 23:57:21,757 - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-10-20 23:57:21,758 - INFO - Socket connected: <socket.socket fd=756, family=23, type=1, proto=6, laddr=('::1', 64733, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-20 23:57:21,758 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001DB98E6D2B0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001DB98E6D2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-10-20 23:57:21,762 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001DB98E6D2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-20 23:57:21,763 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001DB98E6D2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-20 23:57:21,763 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001DB98E6D2B0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-20 23:57:21,763 - INFO - Created channel=1
+2025-10-20 23:57:21,767 - INFO - Consumer waiting for messages. Press CTRL+C to exit.
+2025-10-20 23:57:21,768 - INFO - Received uploads\marks.csv from queue
+2025-10-20 23:57:21,782 - INFO - Processed uploads\marks.csv \u2192 saved to C:\Users\user5\PycharmProjects\PythonProject\Capstone_project\Task_7\student_results.csv

@@ -1,0 +1,10 @@
+2025-10-20 23:05:18,305 - INFO - Consumer started
+2025-10-20 23:05:18,306 - INFO - [Producer] Added ../marks.csv to queue
+2025-10-20 23:05:18,306 - INFO - [Consumer] Started processing ../marks.csv
+2025-10-20 23:05:18,308 - ERROR - [Consumer] Error processing ../marks.csv: [Errno 2] No such file or directory: '../marks.csv'
+2025-10-20 23:05:37,573 - INFO - Consumer started
+2025-10-20 23:05:37,573 - INFO - [Producer] Added ../marks.csv to queue
+2025-10-20 23:05:37,573 - INFO - [Consumer] Started processing ../marks.csv
+2025-10-20 23:05:37,585 - INFO - [Consumer] Finished processing ../marks.csv, saved to ../student_results.csv
+2025-10-20 23:11:33,030 - INFO - Task 6 ETL started
+2025-10-20 23:11:33,041 - INFO - ETL completed successfully, saved to .\daily_report_20251020.csv

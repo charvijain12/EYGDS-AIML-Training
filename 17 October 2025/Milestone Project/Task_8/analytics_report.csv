@@ -1,0 +1,6 @@
+StudentID,Name,Age,Course,Maths,Python,ML,TotalMarks,Percentage,Result
+101,Neha,21,AI,78,85,90,253,84.33,Pass
+102,Arjun,22,ML,65,70,60,195,65.0,Pass
+103,Sophia,20,Data Science,88,92,95,275,91.67,Pass
+104,Ravi,23,AI,50,60,45,155,51.67,Pass
+105,Meena,21,ML,80,88,84,252,84.0,Pass
