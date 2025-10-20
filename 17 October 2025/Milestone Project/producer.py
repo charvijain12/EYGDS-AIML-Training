@@ -59,3 +59,25 @@ async def upload_marks(file: UploadFile):
     except Exception as e:
         logging.error(f"Error uploading file: {e}")
         return {"error": str(e)}
+        
+        
+        
+        
+        
+        
+import os
+import logging
+
+# Use the existing task_5_logs folder in parent folder
+parent_folder = os.path.abspath("..")              # parent directory
+log_folder = os.path.join(parent_folder, "task_5_logs")  # existing folder
+log_file = os.path.join(log_folder, "producer7.log")      # new log file name
+
+# Setup logging
+logging.basicConfig(
+    filename=log_file,
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+logging.info("Producer started")
