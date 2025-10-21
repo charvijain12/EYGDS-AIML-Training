@@ -10,7 +10,7 @@ A prompt can include:
 
 Prompting directly affects model behavior — the better the prompt, the more relevant and accurate the response.
 
-⸻
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 2. Zero-shot Prompting
 
@@ -25,6 +25,8 @@ The model must infer that this is a positive sentiment just from its general kno
 
 Use case:
 When the model already understands the task type (like summarization, translation, classification, etc.).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 3. Few-shot Prompting
 
