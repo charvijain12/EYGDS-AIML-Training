@@ -1,0 +1,33 @@
+ 1. What is Prompting?
+
+Prompting means giving instructions or examples to an LLM in natural language (or structured text) so that it produces the desired output.
+It’s essentially the art of communicating effectively with an LLM.
+
+A prompt can include:
+	•	A question or instruction (“Write a poem about the ocean”)
+	•	Context or examples (“Translate this text to French”)
+	•	Constraints (“Use fewer than 100 words”)
+
+Prompting directly affects model behavior — the better the prompt, the more relevant and accurate the response.
+
+⸻
+
+2. Zero-shot Prompting
+
+Definition:
+Giving the model a task without any examples — you rely entirely on the model’s pretrained knowledge.
+
+Example:
+
+“Classify the sentiment of this review: The movie was amazing!”
+
+The model must infer that this is a positive sentiment just from its general knowledge.
+
+Use case:
+When the model already understands the task type (like summarization, translation, classification, etc.).
+
+3. Few-shot Prompting
+
+Definition:
+You show the model a few examples of the task before asking it to perform it.
+This helps the model “infer the pattern” or “task format”.
