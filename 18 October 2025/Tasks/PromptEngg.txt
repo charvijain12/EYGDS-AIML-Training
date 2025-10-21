@@ -33,3 +33,47 @@ When the model already understands the task type (like summarization, translatio
 Definition:
 You show the model a few examples of the task before asking it to perform it.
 This helps the model “infer the pattern” or “task format”.
+
+Use case:
+Useful when the model isn’t fine-tuned for a task, or when you want to establish a specific tone, style, or format.
+
+⸻
+
+🔗 4. Chain-of-Thought (CoT) Prompting
+
+Definition:
+Encourages the model to reason step-by-step before giving the final answer.
+This is especially useful for math, logic, or reasoning tasks.
+
+Example:
+
+“Let’s think step by step:
+A train travels 60 km in 1 hour. How long will it take to travel 180 km?”
+
+The model might respond:
+
+“60 km in 1 hour means 60 km/hour.
+180 ÷ 60 = 3.
+So it will take 3 hours.”
+
+Use case:
+When reasoning or multi-step logic is required.
+
+⸻
+
+🎛️ 5. Prompt Tuning
+
+Definition:
+Instead of manually writing prompts, we train small, learnable prompt vectors (soft prompts) that guide the model’s behavior for a specific task.
+
+Think of it as fine-tuning the prompt, not the model.
+
+Two types:
+	1.	Soft Prompt Tuning:
+	•	The “prompt” is a small set of continuous embeddings (not human-readable text) learned through gradient descent.
+	•	Only the prompt is trained; the main model weights are frozen.
+	2.	Prefix Tuning / P-tuning:
+	•	Similar idea — a learned prefix is prepended to the model’s inputs to steer behavior.
+
+Example use case:
+Instead of retraining a 175B-parameter model, you can train a 10K-parameter soft prompt for each downstream task — efficient and lightweight.
