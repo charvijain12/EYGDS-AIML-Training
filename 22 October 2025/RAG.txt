@@ -1,0 +1,66 @@
+Retrieval-Augmented Generation (RAG)
+
+1. Definition
+
+Retrieval-Augmented Generation (RAG) is an advanced AI technique that enhances large language models (LLMs) by combining information retrieval and text generation.
+It allows the model to pull up-to-date, external knowledge from a database or document store at the time of a query, rather than relying only on what it learned during training.
+
+In simple terms, RAG makes AI systems smarter and more accurate by letting them “look things up” before answering.
+
+⸻
+
+2. Why RAG is Needed
+
+Traditional large language models (like GPT) have two main limitations:
+	•	Their knowledge is frozen at the time they were trained.
+	•	They may hallucinate (make up information) when asked about specific or niche topics.
+
+RAG solves these issues by:
+	•	Providing access to real or updated data sources, such as company knowledge bases, product manuals, or research papers.
+	•	Reducing hallucinations by grounding responses in retrieved facts.
+
+⸻
+
+3. How RAG Works (Step-by-Step)
+	1.	User Query:
+The user asks a question, e.g., “What are the new safety protocols for Q4?”
+	2.	Retrieval Step:
+	•	The system converts the question into a vector embedding (a numerical representation of meaning).
+	•	It searches a vector database or document store to find the most relevant pieces of text or documents.
+	3.	Augmentation Step:
+	•	The retrieved information (e.g., relevant paragraphs or reports) is added to the context provided to the language model.
+	4.	Generation Step:
+	•	The LLM reads the retrieved data + the user’s query.
+	•	It generates a well-structured, contextually accurate answer grounded in that information.
+
+⸻
+
+4. Architecture Overview
+
+A typical RAG architecture has three main components:
+	•	Embedding Model: Converts text into vectors.
+	•	Vector Store (Vector Database): Stores and retrieves similar text embeddings.
+	•	LLM (Generator): Produces final natural-language responses using retrieved data.
+
+⸻
+
+5. Benefits of RAG
+	•	Up-to-date answers: Pulls from live data sources.
+	•	Domain adaptation: Can easily integrate internal knowledge bases or private data.
+	•	Reduced hallucination: Keeps responses grounded in factual context.
+	•	Scalable: Works with any size or type of data corpus.
+
+⸻
+
+6. Example Use Cases
+	•	Customer support chatbots pulling from company FAQs.
+	•	Research assistants retrieving scientific papers before summarizing.
+	•	Enterprise knowledge systems (e.g., searching corporate documents).
+	•	E-commerce assistants retrieving product details in real time.
+
+⸻
+
+7. Summary
+
+RAG = Retrieval + Generation.
+It empowers AI systems to use both their own intelligence and external data to provide more factual, reliable, and current responses.
