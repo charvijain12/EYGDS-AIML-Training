@@ -1,0 +1,82 @@
+Vector Databases
+
+1. Definition
+
+A Vector Database is a specialized database built to store, index, and search vector embeddings — high-dimensional numerical representations of data (text, images, audio, etc.) that capture their semantic meaning rather than just keywords.
+
+These embeddings allow the database to perform similarity searches — finding content that is meaningfully similar to a query, even if the wording is different.
+
+⸻
+
+2. Why Vector Databases Exist
+
+Traditional databases (like SQL or NoSQL) are great for exact matches — e.g., finding records where “title = X”.
+However, they cannot easily handle semantic similarity, where two phrases have the same meaning but use different words.
+
+Example:
+	•	“How to change a password” ≈ “Reset my login credentials”
+A vector database can recognize this similarity, while a keyword search cannot.
+
+⸻
+
+3. How Vector Databases Work
+	1.	Embedding Generation:
+	•	Text, images, or other data are converted into vectors using an embedding model (often from AI models like OpenAI, Hugging Face, or others).
+	•	Each vector is a list of numbers (e.g., 1,536 dimensions) that encode the meaning of the data.
+	2.	Storage:
+	•	These vectors are stored in the database along with metadata (e.g., document titles, sources, timestamps).
+	3.	Search Query:
+	•	When a user submits a query, it is also converted into a vector embedding.
+	4.	Similarity Search:
+	•	The database compares the query vector with stored vectors using a similarity metric (like cosine similarity).
+	•	It retrieves the most similar items — meaning, the most relevant content.
+
+⸻
+
+4. Key Features
+	•	High-dimensional indexing: Optimized to search among millions of vectors efficiently.
+	•	Approximate Nearest Neighbor (ANN) search: Fast retrieval without scanning every record.
+	•	Scalability: Can handle billions of embeddings.
+	•	Integration: Works with LLMs, search engines, and recommendation systems.
+
+⸻
+
+5. Popular Vector Databases
+
+Some widely used options include:
+	•	Pinecone
+	•	Weaviate
+	•	FAISS (Facebook AI Similarity Search)
+	•	Milvus
+	•	Chroma
+	•	Qdrant
+
+⸻
+
+6. Use Cases
+	•	RAG systems: For retrieving relevant context before generation.
+	•	Semantic search engines: Find documents by meaning, not keywords.
+	•	Recommendation systems: Suggest similar products or content.
+	•	Image/audio search: Retrieve similar images or sounds using embeddings.
+
+⸻
+
+7. Example
+
+If you store these texts:
+	•	“How to reset your password”
+	•	“Update your account settings”
+	•	“Contact support for help”
+
+And a user searches for:
+
+“I forgot my login password”
+
+The vector database will return “How to reset your password” because their vector representations are closest in meaning.
+
+⸻
+
+8. Summary
+
+A Vector Database is a foundation for modern AI retrieval — it lets systems find related meaning, not just matching words.
+It’s the key component that powers the retrieval step in RAG architectures.
