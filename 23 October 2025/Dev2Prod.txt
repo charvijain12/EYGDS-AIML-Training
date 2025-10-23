@@ -1,0 +1,67 @@
+Software Environment Lifecycle (Cloud-based)
+
+1. Dev Environment (Development)
+	•	Setup: Virtual Machine (VM) in the cloud.
+	•	Purpose: For developers to write and build new code.
+	•	Key Activities:
+	•	Code development and initial integration.
+	•	Local testing before pushing to the shared environment.
+	•	Use of CICD (Continuous Integration / Continuous Deployment) pipelines to automate builds and deployments.
+
+⸻
+
+2. QA Environment (Quality Assurance)
+	•	Setup: Another VM in the cloud.
+	•	Purpose: Validate that the application works as expected.
+	•	Key Activities:
+	•	Test the latest build.
+	•	File bugs → fix issues → retest until the environment is “GREEN” (stable).
+	•	Ensures that the build is ready for staging.
+
+⸻
+
+3. Staging Environment
+	•	Setup: Another VM in the cloud.
+	•	Purpose: Acts as a mirror of the production environment.
+	•	Key Activities:
+	•	Final round of testing before user acceptance.
+	•	Used to verify deployment scripts, environment variables, and configurations.
+	•	Helps detect environment-specific issues.
+
+⸻
+
+4. UAT (User Acceptance Testing)
+	•	Purpose: End-users or business stakeholders validate functionality.
+	•	Key Activities:
+	•	Load testing and stress testing for performance validation.
+	•	Confirm that the system meets business requirements.
+	•	Sign-off for release to pre-production.
+
+⸻
+
+5. PPE (Pre-Production Environment)
+	•	Setup: Another VM in the cloud.
+	•	Purpose: A final testing ground before production.
+	•	Key Activities:
+	•	Conduct last validation with production-like data and configurations.
+	•	Final regression testing.
+	•	Check deployment automation and rollback strategies.
+
+⸻
+
+6. Production Environment
+	•	Purpose: Live environment accessed by end-users.
+	•	Key Activities:
+	•	GO LIVE — application is fully operational.
+	•	Monitor system performance, logs, and errors.
+	•	Deploy patches or hotfixes via CICD if necessary.
+
+⸻
+
+⚙️ CICD Pipeline Overview
+	•	CI (Continuous Integration):
+	•	Automates build, test, and integration of code changes.
+	•	Helps detect issues early.
+	•	CD (Continuous Deployment/Delivery):
+	•	Automates release to testing and production environments.
+	•	Ensures consistency and reduces manual deployment errors.
