@@ -64,3 +64,13 @@ Types of Data:
 Features:
 	1.	Easy Loading:
 Load a dataset with one line of code using the datasets library.
+2.	Preprocessing Tools:
+Includes functions for cleaning, splitting, and transforming data.
+	3.	Dataset Sharing:
+You can upload and share your own datasets with the community.
+
+Purpose:
+To provide standardized, ready-to-use data for machine learning tasks, saving time for developers and researchers.
+
+Example:
+A dataset like “IMDB” can be used to train a model that predicts if a movie review is positive or negative.
