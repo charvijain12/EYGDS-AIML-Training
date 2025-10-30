@@ -1,10 +1,9 @@
-Multi-Agent Coordination Patterns (sometimes abbreviated “MCP” in context)
-
-Note: The acronym “MCP” is used in a couple of ways in the AI-agent world: one is the “Model Context Protocol” (MCP) protocol for model/tool interaction; another is the general set of coordination patterns among multiple agents. I’ll cover both as they overlap.
+							Multi-Agent Coordination Patterns (abbreviated “MCP”)
 
 What are multi-agent coordination patterns?
 
-Multi-agent coordination means you have multiple autonomous agents (or sub-agents) working together to solve a problem. Rather than one large monolithic agent trying to do everything, you break the work up into specialized roles, and the agents coordinate, delegate, hand off work, share context, monitor each other, and so on.
+Multi-agent coordination means you have multiple autonomous agents (or sub-agents) working together to solve a problem. 
+Rather than one large monolithic agent trying to do everything, you break the work up into specialized roles, and the agents coordinate, delegate, hand off work, share context, monitor each other, and so on.
 A good survey of these patterns is available via the “Multi-Agent” section of Agentic Design Patterns.  ￼
 
 Typical coordination patterns include:
@@ -21,15 +20,6 @@ Why use them?
 	•	Scalability & maintainability: Easier to extend or replace a role/agent than monolithic one.
 	•	Robustness: When coordinated well, can handle failures, retry, redundant checks, and context sharing.
 
-How does the “Model Context Protocol (MCP)” tie in?
-
-MCP is a protocol (an open standard) that helps enable coordination by standardising how models/agents interact with tools and data, and how they share context.  ￼
-
-Key features of MCP:
-	•	Standardised JSON-RPC or equivalent message format for tool invocation, context passing.  ￼
-	•	Enables agents to discover available tools, invoke them, share context/memory.  ￼
-	•	Supports shared memory, context management across agents and sessions (so that multiple agents can “see” relevant information).  ￼
-	•	Enables agent-to-agent coordination: For example, one agent posts something to the MCP “hub”, another pulls it.  ￼
 
 Example of coordination pattern using MCP
 
@@ -51,5 +41,4 @@ Challenges:
 	•	Resource and concurrency management (many agents may spawn many LLM calls).
 
 Summary
-
-So when you see “MCP” in the context of multi‐agent coordination patterns, it often refers to the Model Context Protocol, which is a foundational protocol that supports these kinds of patterns. Meanwhile, “multi-agent coordination patterns” is a broader systems/architectural idea of how to organise and orchestrate agents.
+“MCP” in the context of “multi-agent coordination patterns” is a broader systems/architectural idea of how to organise and orchestrate agents.
