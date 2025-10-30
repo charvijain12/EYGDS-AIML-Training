@@ -1,0 +1,31 @@
+								Azure AI Foundry Agent Service (“Agent as a Service”)
+
+What it is
+
+The Azure AI Foundry Agent Service is a platform/service by Microsoft that allows organisations to design, deploy, scale, manage AI agents, including multi-agent workflows, in an enterprise-ready way.
+
+Key elements:
+	•	You pick a model (LLM) from the catalog (GPT-4o, Llama 3, etc.). 
+	•	You define an agent (instruction + model + tools). Tools could connect to data sources (e.g., SharePoint, Bing search, Azure AI Search) or actions (Azure Logic Apps, Azure Functions). 
+	•	The runtime handles orchestration: message threading, tool invocation, agent-to-agent workflows, observability, security, memory/state, enterprise governance.
+	•	Support for multi-agent orchestration: workflows where multiple agents collaborate, delegate work, maintain state, etc. 
+
+Why it’s important
+	•	It abstracts a lot of infrastructure complexity (you don’t need to build from scratch all the agent orchestration plumbing).
+	•	It integrates enterprise security, compliance, identity, governance — important for business use.
+	•	It embraces open standards: supports protocols like MCP, A2A (agent-to-agent) workflows.
+	•	It allows you to build not just a single agent, but an ecosystem of agents that collaborate — which is aligned with the multi-agent coordination patterns described earlier.
+
+How it relates to multi-agent coordination / MCP
+	•	The Foundry Agent Service has built-in support for multi-agent coordination (connected agents, multi-agent workflows) where one agent can call another as a tool, or an orchestration layer manages several agents.
+	•	It supports MCP (Model Context Protocol) servers and clients: for example, the blog notes they support “Model Context Protocol (MCP) or OpenAPI” for tool integration.
+	•	So you can think of the Foundry Agent Service as a production-grade “agent orchestration and runtime environment” that implements many of the multi-agent coordination patterns and supports the protocols (like MCP) needed for interoperability.
+
+Use-cases / theme
+	•	Enterprise process automation: e.g., customer onboarding (many steps, many agents), supply-chain workflows.
+	•	Intelligent assistants: agents that interact with business data, systems, take actions, integrate with other enterprise tools.
+	•	Multi-agent systems where each agent is specialised (e.g., one for search, one for summarisation, one for action execution) and orchestrated together.
+
+Summary
+
+In short: Azure AI Foundry Agent Service gives you “agent as a service” — build your specialised agents, connect them to enterprise data and tools, orchestrate them (including multiple agents collaborating), with enterprise-grade infrastructure. This is very much aligned with multi-agent coordination patterns (and uses protocols like MCP to do so).
