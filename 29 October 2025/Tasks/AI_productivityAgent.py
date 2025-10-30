@@ -74,7 +74,7 @@ def get_all_notes() -> str:
 # ------------------------------------------------------------
 # 4. Main Conversational Loop
 # ------------------------------------------------------------
-print("\n=== 🤖 AI Productivity Assistant ===")
+print("\n=== AI Productivity Assistant ===")
 print("Commands: summarize / analyze / note / get notes / improve / priority / exit\n")
 
 while True:
@@ -82,7 +82,7 @@ while True:
     if not user_input:
         continue
     if user_input.lower() == "exit":
-        print("Agent: Goodbye 👋")
+        print("Agent: Goodbye")
         break
 
     # Summarizer
