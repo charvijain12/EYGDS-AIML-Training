@@ -115,3 +115,46 @@ while True:
         memory.save_context({"input": user_input}, {"output": response.content})
     except Exception as e:
         print("Error:", e)
+
+
+C:\Users\user5\PycharmProjects\PythonProject1\.venv\Scripts\python.exe C:\Users\user5\PycharmProjects\PythonProject1\memory_ai.py 
+Traceback (most recent call last):
+  File "C:\Users\user5\PycharmProjects\PythonProject1\memory_ai.py", line 7, in <module>
+    from langchain_openai import ChatOpenAI
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\langchain_openai\__init__.py", line 3, in <module>
+    from langchain_openai.chat_models import AzureChatOpenAI, ChatOpenAI
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\langchain_openai\chat_models\__init__.py", line 3, in <module>
+    from langchain_openai.chat_models.azure import AzureChatOpenAI
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\langchain_openai\chat_models\azure.py", line 11, in <module>
+    from langchain_core.language_models import LanguageModelInput
+  File "<frozen importlib._bootstrap>", line 1412, in _handle_fromlist
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\langchain_core\language_models\__init__.py", line 99, in __getattr__
+    result = import_attr(attr_name, module_name, __spec__.parent)
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\langchain_core\_import_utils.py", line 35, in import_attr
+    module = import_module(f".{module_name}", package=package)
+  File "C:\Users\user5\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\langchain_core\language_models\base.py", line 41, in <module>
+    from transformers import GPT2TokenizerFast  # type: ignore[import-not-found]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\transformers\__init__.py", line 27, in <module>
+    from . import dependency_versions_check
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\transformers\dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\transformers\utils\__init__.py", line 24, in <module>
+    from .auto_docstring import (
+    ...<10 lines>...
+    )
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\transformers\utils\auto_docstring.py", line 30, in <module>
+    from .generic import ModelOutput
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\transformers\utils\generic.py", line 51, in <module>
+    import torch
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\torch\__init__.py", line 281, in <module>
+    _load_dll_libraries()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\torch\__init__.py", line 264, in _load_dll_libraries
+    raise err
+OSError: [WinError 1114] A dynamic link library (DLL) initialization routine failed. Error loading "C:\Users\user5\PycharmProjects\PythonProject1\.venv\Lib\site-packages\torch\lib\c10.dll" or one of its dependencies.
+
+Process finished with exit code 1
