@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "AI Resume Screener",
+    "description": "AI tool to match resumes with job roles",
+    "required_skills": ["nlp", "python", "fastapi"],
+    "status": "open"
+  },
+  {
+    "id": 2,
+    "name": "Internal Chatbot HR Assistant",
+    "description": "Chatbot for HR and employee queries",
+    "required_skills": ["python", "flask", "nlp"],
+    "status": "open"
+  },
+  {
+    "id": 3,
+    "name": "Data Visualization Portal",
+    "description": "Dashboard for KPI insights",
+    "required_skills": ["react", "data visualization", "python"],
+    "status": "closed"
+  }
+]

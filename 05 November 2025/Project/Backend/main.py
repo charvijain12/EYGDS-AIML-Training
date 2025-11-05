@@ -1,63 +1,128 @@
-import json
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
+from database import Base, engine, SessionLocal
+from models import Employee, Project
 from recommender import get_project_recommendations
 from chatbot import get_chat_response
+import json
 
-app = FastAPI(title="ProjectMate: Internal Project Recommender")
+# -------------------------------------------------------------------
+# 🌟 FastAPI App Initialization
+# -------------------------------------------------------------------
+app = FastAPI(title="ProjectMate Backend", version="1.0")
 
+# -------------------------------------------------------------------
+# 🧱 Database Setup
+# -------------------------------------------------------------------
+Base.metadata.create_all(bind=engine)
+
+# Dependency to get DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# -------------------------------------------------------------------
+# 🌍 CORS Configuration (Frontend Access)
+# -------------------------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # or specify e.g., ["http://localhost:5173"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-with open("data.json", "r") as f:
-    db = json.load(f)
-
+# -------------------------------------------------------------------
+# 🏠 Root Endpoint
+# -------------------------------------------------------------------
 @app.get("/")
 def home():
-    return {"message": "ProjectMate API is running 🚀"}
+    return {"message": "ProjectMate API is live 🚀"}
 
-@app.get("/employees")
-def list_employees():
-    return db["employees"]
 
-@app.post("/add_employee")
-def add_employee(id: int, name: str, email: str, skills: str):
-    # check if ID or email already exists
-    for emp in db["employees"]:
-        if emp["id"] == id:
-            raise HTTPException(status_code=400, detail="Employee ID already exists.")
-        if emp["email"].lower() == email.lower():
-            raise HTTPException(status_code=400, detail="Email already exists.")
+# -------------------------------------------------------------------
+# 👥 Employee Endpoints
+# -------------------------------------------------------------------
 
-    new_emp = {
-        "id": id,
-        "name": name,
-        "email": email,
-        "skills": [s.strip() for s in skills.split(",")],
-        "past_projects": []
-    }
-    db["employees"].append(new_emp)
-    with open("data.json", "w") as f:
-        json.dump(db, f, indent=4)
+# Get all employees
+@app.get("/api/employees")
+def get_employees(db: Session = Depends(get_db)):
+    employees = db.query(Employee).all()
+    return employees
+
+
+# Add new employee
+@app.post("/api/employees")
+def add_employee(
+    id: int,
+    name: str,
+    email: str,
+    skills: str,
+    db: Session = Depends(get_db)
+):
+    # Check duplicates
+    if db.query(Employee).filter(Employee.id == id).first():
+        raise HTTPException(status_code=400, detail="Employee ID already exists.")
+    if db.query(Employee).filter(Employee.email == email).first():
+        raise HTTPException(status_code=400, detail="Email already exists.")
+
+    new_emp = Employee(
+        id=id,
+        name=name,
+        email=email,
+        skills=[s.strip().lower() for s in skills.split(",")],
+        past_projects=[]
+    )
+    db.add(new_emp)
+    db.commit()
+    db.refresh(new_emp)
     return {"message": f"Employee {name} added successfully!"}
 
-@app.get("/projects")
-def list_projects():
-    return db["projects"]
 
-@app.get("/recommend/{employee_name}")
-def recommend(employee_name: str):
-    emp = next((e for e in db["employees"] if e["name"].lower() == employee_name.lower()), None)
+# -------------------------------------------------------------------
+# 📋 Projects & Recommendations
+# -------------------------------------------------------------------
+
+# Load all projects from JSON file
+@app.get("/api/projects")
+def get_projects():
+    with open("data/projects.json", "r") as f:
+        return json.load(f)
+
+
+# Recommend projects based on skills
+@app.get("/api/employees/{name}/recommendations")
+def recommend(name: str, db: Session = Depends(get_db)):
+    emp = db.query(Employee).filter(Employee.name.ilike(name)).first()
     if not emp:
         raise HTTPException(status_code=404, detail="Employee not found")
-    return get_project_recommendations(emp["skills"], db["projects"])
 
-@app.get("/chat/{message}")
+    with open("data/projects.json", "r") as f:
+        projects = json.load(f)
+
+    recommendations = get_project_recommendations(emp.skills, projects)
+    return {
+        "employee": emp.name,
+        "recommendations": recommendations
+    }
+
+
+# -------------------------------------------------------------------
+# 💬 Chatbot Endpoint
+# -------------------------------------------------------------------
+@app.post("/api/chat")
 def chat(message: str):
     response = get_chat_response(message)
     return {"reply": response}
+
+
+# -------------------------------------------------------------------
+# 📡 Run Check
+# -------------------------------------------------------------------
+@app.get("/api/status")
+def status():
+    return {"status": "ok", "message": "Backend is healthy ✅"}
