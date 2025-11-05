@@ -1,1 +1,55 @@
-
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Aarav Sharma",
+      "email": "aarav.sharma@company.in",
+      "skills": ["python", "flask", "sql", "data visualization"],
+      "past_projects": ["Customer Analytics Dashboard", "Data Pipeline Revamp"]
+    },
+    {
+      "id": 2,
+      "name": "Charvi Patel",
+      "email": "charvi.patel@company.in",
+      "skills": ["nlp", "machine learning", "react", "fastapi"],
+      "past_projects": ["Chatbot HR Assistant", "Employee Feedback Analyzer"]
+    },
+    {
+      "id": 3,
+      "name": "Rohan Mehta",
+      "email": "rohan.mehta@company.in",
+      "skills": ["java", "spring boot", "sql", "microservices"],
+      "past_projects": ["Inventory Management System"]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "AI Resume Screener",
+      "description": "AI tool to screen resumes and match candidates with roles.",
+      "required_skills": ["nlp", "python", "fastapi"],
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "name": "Internal Chatbot HR Assistant",
+      "description": "Chatbot for answering HR-related queries.",
+      "required_skills": ["python", "flask", "nlp"],
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "name": "Data Visualization Portal",
+      "description": "Interactive dashboards for KPIs.",
+      "required_skills": ["react", "data visualization", "python"],
+      "status": "closed"
+    },
+    {
+      "id": 4,
+      "name": "Automation Testing Framework",
+      "description": "Automated API/UI testing framework.",
+      "required_skills": ["selenium", "python", "pytest"],
+      "status": "open"
+    }
+  ]
+}
