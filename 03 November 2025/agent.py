@@ -13,7 +13,7 @@ load_dotenv()
 open_router_model_client = OpenAIChatCompletionClient(
     base_url="https://openrouter.ai/api/v1",
     model="mistralai/mistral-7b-instruct:free",
-    api_key="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",
+    api_key="add your key",
     model_info={
         "family": "openai",
         "vision": True,
