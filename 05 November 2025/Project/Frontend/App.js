@@ -1,44 +1,62 @@
 import React, { useState } from "react";
 
 function App() {
-  const [employee, setEmployee] = useState("charvi");
-  const [recommendations, setRecommendations] = useState([]);
-  const [message, setMessage] = useState("");
-  const [chat, setChat] = useState([]);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
 
-  const getRecommendations = async () => {
-    const res = await fetch(`http://127.0.0.1:8000/recommend/${employee}`);
-    const data = await res.json();
-    setRecommendations(data.recommendations);
-  };
-
+  // send message to backend
   const sendMessage = async () => {
-    const res = await fetch(`http://127.0.0.1:8000/chat?message=${message}`, { method: "POST" });
-    const data = await res.json();
-    setChat([...chat, { user: "You", text: message }, { user: "Bot", text: data.reply }]);
-    setMessage("");
+    if (!input.trim()) return;
+
+    // show user message immediately
+    const newMessages = [...messages, { sender: "You", text: input }];
+    setMessages(newMessages);
+    setInput("");
+
+    try {
+      // backend call
+      const response = await fetch(`http://127.0.0.1:8000/chat/${input}`);
+      const data = await response.json();
+
+      // add bot reply to chat
+      setMessages([...newMessages, { sender: "Bot", text: data.reply }]);
+    } catch (error) {
+      setMessages([
+        ...newMessages,
+        { sender: "Bot", text: "Error connecting to server 😕" },
+      ]);
+    }
   };
 
   return (
-    <div style={{ margin: "2rem" }}>
+    <div style={{ margin: "40px" }}>
       <h2>Internal Project Matching Chatbot</h2>
-      <button onClick={getRecommendations}>Get Recommendations</button>
-      <ul>
-        {recommendations.map((r, i) => (
-          <li key={i}>{r.project} - Match: {r.match_score}%</li>
-        ))}
-      </ul>
 
-      <div style={{ marginTop: "2rem" }}>
-        <h3>Chatbot</h3>
-        <div style={{ border: "1px solid #aaa", padding: "10px", width: "300px", height: "200px", overflowY: "scroll" }}>
-          {chat.map((c, i) => (
-            <p key={i}><b>{c.user}:</b> {c.text}</p>
-          ))}
-        </div>
-        <input value={message} onChange={e => setMessage(e.target.value)} placeholder="Type here..." />
-        <button onClick={sendMessage}>Send</button>
+      <div
+        style={{
+          border: "1px solid #ccc",
+          padding: "10px",
+          width: "400px",
+          height: "300px",
+          overflowY: "scroll",
+          marginBottom: "10px",
+        }}
+      >
+        {messages.map((msg, idx) => (
+          <p key={idx}>
+            <strong>{msg.sender}: </strong> {msg.text}
+          </p>
+        ))}
       </div>
+
+      <input
+        type="text"
+        value={input}
+        placeholder="Type here..."
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+      />
+      <button onClick={sendMessage}>Send</button>
     </div>
   );
 }
