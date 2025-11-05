@@ -1,0 +1,31 @@
+What is Autogen?
+
+Autogen is a framework created by Microsoft that helps developers build multi-agent systems using large language models (LLMs). It allows multiple AI agents (and humans, if needed) to communicate and collaborate with each other to solve complex problems. Instead of having just one AI model respond to you, Autogen enables you to design entire teams of AI agents — each with its own role, skills, and behavior — that can work together automatically.
+
+⸻
+
+⚙️ Key Features
+
+Autogen’s main strength is in multi-agent collaboration. You can create several agents that talk to each other and share tasks. Each agent can have its own role (for example, a “coder,” “tester,” or “manager”) and can be given specific instructions or goals.
+
+Another important feature is customization — you can design how each agent behaves, what tools it can use, and how it interacts with others. Autogen supports automatic conversations between agents, meaning once you set up the scenario, they continue talking and reasoning until a task is completed.
+
+It also supports human-in-the-loop setups, where you can decide if and when a human should step in to review or approve something. Autogen integrates with external tools and APIs, allowing agents to perform real actions like running Python functions, fetching data, or interacting with databases. It works with multiple model providers (like OpenAI, Azure OpenAI, Anthropic, or local models), and includes logging and debugging options so you can track what each agent says and does.
+
+⸻
+
+🧩 Functions
+
+In Autogen, an Agent is the core building block. You can define an agent with a role, system message, and access to tools. The framework manages conversations between agents through built-in classes that handle message passing. There are also specialized agents, such as:
+	•	A FunctionCallingAgent, which can automatically call Python functions.
+	•	A ToolAgent, which interacts with APIs or external systems.
+	•	A UserProxyAgent, which represents a human participant in the system.
+All of these components can be coordinated using a ChatManager, which controls the entire communication process.
+
+⸻
+
+💼 Use Cases
+
+Autogen can be used in a wide range of scenarios. For automation, you can build systems that automatically handle multi-step workflows like generating reports or cleaning data. In coding, one agent can write code while another reviews or tests it. For research or business analysis, one agent could gather data, another summarize it, and a third prepare the final document.
+
+In customer support, you might have one agent answering common questions and another handling more complex issues. In creative tasks, one agent could generate ideas, another refine them, and a third handle formatting. Essentially, Autogen is useful anywhere multiple AI agents (and possibly humans) need to coordinate to complete tasks.
