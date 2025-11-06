@@ -1,129 +1,80 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { addEmployee } from "../api";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle, CheckCircle2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "@/components/ui/use-toast";
+
+interface EmployeeForm {
+  name: string;
+  email: string;
+  skills: string;
+  past_projects: string;
+}
 
 const AddEmployee = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    employeeId: "",
-    fullName: "",
+  const [form, setForm] = useState<EmployeeForm>({
+    name: "",
     email: "",
     skills: "",
+    past_projects: "",
   });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSuccess(false);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
 
-    // Basic validation
-    if (!formData.employeeId || !formData.fullName || !formData.email || !formData.skills) {
-      setError("All fields are required");
+  const handleSubmit = async () => {
+    if (!form.name || !form.email) {
+      toast({ title: "Error", description: "Name and email are required", variant: "destructive" });
       return;
     }
 
-    // Simulate checking if employee ID exists (replace with actual API call)
-    const existingIds = ["12345", "67890"];
-    if (existingIds.includes(formData.employeeId)) {
-      setError("Employee ID already exists");
-      return;
-    }
+    setLoading(true);
+    const employeeData = {
+      name: form.name,
+      email: form.email,
+      skills: form.skills.split(",").map((s) => s.trim()),
+      past_projects: form.past_projects
+        ? form.past_projects.split(",").map((p) => p.trim())
+        : [],
+    };
 
-    // Success
-    setSuccess(true);
-    toast({
-      title: "Success!",
-      description: "Employee added successfully",
-    });
-    
-    // Reset form
-    setTimeout(() => {
-      setFormData({ employeeId: "", fullName: "", email: "", skills: "" });
-      setSuccess(false);
-    }, 2000);
+    const response = await addEmployee(employeeData);
+    setLoading(false);
+
+    if (response.message.includes("success")) {
+      toast({ title: "Success", description: "Employee added successfully ✅" });
+      setForm({ name: "", email: "", skills: "", past_projects: "" });
+
+      // 🔥 Trigger a refetch event (Custom event)
+      window.dispatchEvent(new Event("employeeAdded"));
+    } else {
+      toast({ title: "Error", description: response.message, variant: "destructive" });
+    }
   };
 
   return (
-    <div className="max-w-2xl mx-auto animate-fade-in">
-      <Card className="shadow-lg">
+    <div className="space-y-6">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-3xl">Add New Employee</CardTitle>
-          <CardDescription>Register a new employee with their details and skills</CardDescription>
+          <CardTitle>Add New Employee</CardTitle>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {error && (
-              <Alert variant="destructive" className="animate-scale-in">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-
-            {success && (
-              <Alert className="border-green-500 text-green-700 bg-green-50 animate-scale-in">
-                <CheckCircle2 className="h-4 w-4" />
-                <AlertDescription>Employee added successfully!</AlertDescription>
-              </Alert>
-            )}
-
-            <div className="space-y-2">
-              <Label htmlFor="employeeId">Employee ID</Label>
-              <Input
-                id="employeeId"
-                type="number"
-                placeholder="Enter employee ID"
-                value={formData.employeeId}
-                onChange={(e) => setFormData({ ...formData, employeeId: e.target.value })}
-                className="transition-all"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="fullName">Full Name</Label>
-              <Input
-                id="fullName"
-                placeholder="Enter full name"
-                value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                className="transition-all"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter email address"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="transition-all"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="skills">Skills</Label>
-              <Input
-                id="skills"
-                placeholder="Enter skills (comma separated)"
-                value={formData.skills}
-                onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
-                className="transition-all"
-              />
-              <p className="text-sm text-muted-foreground">Example: React, Python, Machine Learning</p>
-            </div>
-
-            <Button type="submit" className="w-full">
-              Add Employee
-            </Button>
-          </form>
+        <CardContent className="space-y-4">
+          <Input name="name" value={form.name} onChange={handleChange} placeholder="Full Name" />
+          <Input name="email" value={form.email} onChange={handleChange} placeholder="Email" />
+          <Input name="skills" value={form.skills} onChange={handleChange} placeholder="Skills (comma-separated)" />
+          <Input
+            name="past_projects"
+            value={form.past_projects}
+            onChange={handleChange}
+            placeholder="Past Projects (optional)"
+          />
+          <Button onClick={handleSubmit} disabled={loading} className="w-full">
+            {loading ? "Adding..." : "Add Employee"}
+          </Button>
         </CardContent>
       </Card>
     </div>
