@@ -1,42 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Briefcase, Target } from "lucide-react";
-
-// Mock data (replace with API calls)
-const employees = [
-  { id: "1", name: "Alice Johnson", skills: ["React", "TypeScript", "Node.js"] },
-  { id: "2", name: "Bob Smith", skills: ["Python", "Machine Learning", "TensorFlow"] },
-  { id: "3", name: "Carol Williams", skills: ["Java", "Spring Boot", "AWS"] },
-];
-
-const mockProjects = {
-  "Alice Johnson": [
-    { name: "E-commerce Platform", description: "Build a scalable shopping platform", match: 95 },
-    { name: "Admin Dashboard", description: "Create internal analytics dashboard", match: 87 },
-  ],
-  "Bob Smith": [
-    { name: "ML Pipeline", description: "Data processing and model training", match: 92 },
-    { name: "Recommendation Engine", description: "User behavior prediction system", match: 89 },
-  ],
-  "Carol Williams": [
-    { name: "Cloud Migration", description: "Move legacy apps to AWS", match: 91 },
-    { name: "Microservices API", description: "Build REST APIs with Spring", match: 88 },
-  ],
-};
+import { Briefcase, Target, RefreshCw } from "lucide-react";
+import { getEmployees, getRecommendations } from "../api";
 
 const ExistingEmployees = () => {
-  const [selectedEmployee, setSelectedEmployee] = useState<string>("");
+  const [employees, setEmployees] = useState([]);
+  const [selectedEmployee, setSelectedEmployee] = useState("");
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingProjects, setLoadingProjects] = useState(false);
+
+  // Fetch employees on mount
+  useEffect(() => {
+    async function fetchEmployees() {
+      try {
+        const data = await getEmployees();
+        setEmployees(data);
+      } catch (error) {
+        console.error("Error fetching employees:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchEmployees();
+  }, []);
+
+  // Fetch project recommendations when an employee is selected
+  useEffect(() => {
+    async function fetchProjects() {
+      if (!selectedEmployee) return;
+      setLoadingProjects(true);
+      try {
+        const recs = await getRecommendations(selectedEmployee);
+        setProjects(recs);
+      } catch (error) {
+        console.error("Error fetching recommendations:", error);
+        setProjects([]);
+      } finally {
+        setLoadingProjects(false);
+      }
+    }
+    fetchProjects();
+  }, [selectedEmployee]);
+
+  if (loading) return <p className="text-center mt-10">Loading employees...</p>;
+
   const employee = employees.find((e) => e.name === selectedEmployee);
-  const projects = selectedEmployee ? mockProjects[selectedEmployee as keyof typeof mockProjects] || [] : [];
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">Existing Employees</h1>
-        <p className="text-muted-foreground">Select an employee to view their profile and recommendations</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Existing Employees</h1>
+          <p className="text-muted-foreground">Select an employee to view their profile and recommendations</p>
+        </div>
+        <Button
+          onClick={async () => {
+            setLoading(true);
+            const data = await getEmployees();
+            setEmployees(data);
+            setLoading(false);
+          }}
+          variant="outline"
+          className="flex items-center gap-2"
+        >
+          <RefreshCw className="w-4 h-4" /> Refresh
+        </Button>
       </div>
 
       <Card>
@@ -50,11 +82,15 @@ const ExistingEmployees = () => {
               <SelectValue placeholder="Select an employee" />
             </SelectTrigger>
             <SelectContent>
-              {employees.map((emp) => (
-                <SelectItem key={emp.id} value={emp.name}>
-                  {emp.name}
-                </SelectItem>
-              ))}
+              {employees.length === 0 ? (
+                <SelectItem disabled value="none">No employees found</SelectItem>
+              ) : (
+                employees.map((emp) => (
+                  <SelectItem key={emp.id} value={emp.name}>
+                    {emp.name}
+                  </SelectItem>
+                ))
+              )}
             </SelectContent>
           </Select>
         </CardContent>
@@ -62,6 +98,7 @@ const ExistingEmployees = () => {
 
       {employee && (
         <div className="space-y-6 animate-scale-in">
+          {/* Skills Card */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -71,7 +108,7 @@ const ExistingEmployees = () => {
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {employee.skills.map((skill, index) => (
+                {(employee.skills || []).map((skill, index) => (
                   <Badge key={index} variant="secondary" className="text-sm py-1 px-3">
                     {skill}
                   </Badge>
@@ -80,28 +117,41 @@ const ExistingEmployees = () => {
             </CardContent>
           </Card>
 
+          {/* Recommended Projects */}
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Target className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-bold">Recommended Projects</h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              {projects.map((project, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{project.name}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">Skill Match</span>
-                      <Badge className="bg-primary text-primary-foreground">{project.match}%</Badge>
-                    </div>
-                    <Button className="w-full">Apply Now</Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+
+            {loadingProjects ? (
+              <p>Loading project recommendations...</p>
+            ) : projects.length === 0 ? (
+              <p className="text-gray-500">No recommendations found for this employee.</p>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-4">
+                {projects.map((project, index) => (
+                  <Card
+                    key={index}
+                    className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary"
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-xl">{project.name}</CardTitle>
+                      <CardDescription>{project.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">Skill Match</span>
+                        <Badge className="bg-primary text-primary-foreground">
+                          {project.match}%
+                        </Badge>
+                      </div>
+                      <Button className="w-full">Apply Now</Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
