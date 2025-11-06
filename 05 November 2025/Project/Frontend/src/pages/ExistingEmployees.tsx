@@ -1,19 +1,46 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Briefcase, Target, RefreshCw } from "lucide-react";
 import { getEmployees, getRecommendations } from "../api";
 
-const ExistingEmployees = () => {
-  const [employees, setEmployees] = useState([]);
-  const [selectedEmployee, setSelectedEmployee] = useState("");
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loadingProjects, setLoadingProjects] = useState(false);
+// 🧠 Type definitions for better type safety
+interface Employee {
+  id: number;
+  name: string;
+  email: string;
+  skills: string[];
+  past_projects?: string[];
+}
 
-  // Fetch employees on mount
+interface Project {
+  name: string;
+  description: string;
+  match: number;
+}
+
+const ExistingEmployees = () => {
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [selectedEmployee, setSelectedEmployee] = useState<string>("");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [loadingProjects, setLoadingProjects] = useState<boolean>(false);
+
+  // Fetch employees when component loads
   useEffect(() => {
     async function fetchEmployees() {
       try {
@@ -28,7 +55,7 @@ const ExistingEmployees = () => {
     fetchEmployees();
   }, []);
 
-  // Fetch project recommendations when an employee is selected
+  // Fetch project recommendations when employee changes
   useEffect(() => {
     async function fetchProjects() {
       if (!selectedEmployee) return;
@@ -55,7 +82,9 @@ const ExistingEmployees = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold mb-2">Existing Employees</h1>
-          <p className="text-muted-foreground">Select an employee to view their profile and recommendations</p>
+          <p className="text-muted-foreground">
+            Select an employee to view their profile and recommendations
+          </p>
         </div>
         <Button
           onClick={async () => {
@@ -74,7 +103,9 @@ const ExistingEmployees = () => {
       <Card>
         <CardHeader>
           <CardTitle>Select Employee</CardTitle>
-          <CardDescription>Choose from the list of registered employees</CardDescription>
+          <CardDescription>
+            Choose from the list of registered employees
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Select value={selectedEmployee} onValueChange={setSelectedEmployee}>
@@ -83,7 +114,9 @@ const ExistingEmployees = () => {
             </SelectTrigger>
             <SelectContent>
               {employees.length === 0 ? (
-                <SelectItem disabled value="none">No employees found</SelectItem>
+                <SelectItem disabled value="none">
+                  No employees found
+                </SelectItem>
               ) : (
                 employees.map((emp) => (
                   <SelectItem key={emp.id} value={emp.name}>
@@ -109,7 +142,11 @@ const ExistingEmployees = () => {
             <CardContent>
               <div className="flex flex-wrap gap-2">
                 {(employee.skills || []).map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="text-sm py-1 px-3">
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="text-sm py-1 px-3"
+                  >
                     {skill}
                   </Badge>
                 ))}
@@ -127,7 +164,9 @@ const ExistingEmployees = () => {
             {loadingProjects ? (
               <p>Loading project recommendations...</p>
             ) : projects.length === 0 ? (
-              <p className="text-gray-500">No recommendations found for this employee.</p>
+              <p className="text-gray-500">
+                No recommendations found for this employee.
+              </p>
             ) : (
               <div className="grid md:grid-cols-2 gap-4">
                 {projects.map((project, index) => (
@@ -141,7 +180,9 @@ const ExistingEmployees = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Skill Match</span>
+                        <span className="text-sm text-muted-foreground">
+                          Skill Match
+                        </span>
                         <Badge className="bg-primary text-primary-foreground">
                           {project.match}%
                         </Badge>
