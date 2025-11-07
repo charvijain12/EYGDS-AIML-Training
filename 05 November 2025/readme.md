@@ -1,4 +1,4 @@
-🌟 ProjectMate — Internal Project Recommender & Growth Companion
+#ProjectMate — Internal Project Recommender & Growth Companion
 
 💼 Empowering employees to find the right internal projects, grow their skills, and connect with AI-driven learning insights.
 
