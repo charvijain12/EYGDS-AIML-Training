@@ -1,0 +1,33 @@
+
+[
+  {
+    "timestamp": "2025-11-07T15:00:05.123456",
+    "question": "What is the capital of India?",
+    "answer": "The capital of India is New Delhi."
+  },
+  {
+    "timestamp": "2025-11-07T15:07:12.654321",
+    "question": "Name a programming language used for web development.",
+    "answer": "JavaScript is widely used for web development."
+  },
+  {
+    "timestamp": "2025-11-07T15:13:45.987654",
+    "question": "What is the largest planet in our solar system?",
+    "answer": "Jupiter is the largest planet in our solar system."
+  },
+  {
+    "timestamp": "2025-11-07T15:19:30.246810",
+    "question": "Who wrote 'Romeo and Juliet'?",
+    "answer": "William Shakespeare wrote 'Romeo and Juliet'."
+  },
+  {
+    "timestamp": "2025-11-07T15:21:01.753130",
+    "question": "What causes lightning?",
+    "answer": "Lightning is caused by the buildup and discharge of electrical energy in the atmosphere, primarily within thunderstorms. It involves charge separation in clouds, the strengthening of the electric field, and the eventual discharge of energy through ionized air channels, producing a bright flash and thunder."
+  },
+  {
+    "timestamp": "2025-11-07T15:26:00.112233",
+    "question": "Explain FastAPI in simple terms.",
+    "answer": "FastAPI is a modern Python framework for building APIs quickly. It uses type hints, generates documentation automatically, and is very fast because it’s built on Starlette and Pydantic."
+  }
+]
