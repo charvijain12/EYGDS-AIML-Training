@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Q&A Assistant</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: #fff;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    textarea {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      min-height: 120px;
+      resize: vertical;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .response-box {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+      display: none;
+    }
+    .response-box.show {
+      display: block;
+    }
+    .response-box.error {
+      border-left-color: #dc3545;
+      background: #ffe6e6;
+      color: #dc3545;
+    }
+    .loading {
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+      color: #667eea;
+    }
+    .loading.show {
+      display: block;
+    }
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 Ask Me Anything</h1>
+    <p class="subtitle">Powered by your FastAPI backend</p>
+
+    <form id="qaForm">
+      <label for="question">Your Question:</label>
+      <textarea id="question" placeholder="Type your question here..." required></textarea>
+      <button type="submit" id="submitBtn"><span id="buttonText">Ask Question</span></button>
+    </form>
+
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Thinking...</p>
+    </div>
+
+    <div id="responseBox" class="response-box">
+      <h3>Answer:</h3>
+      <p id="responseText"></p>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:8000';
+
+    document.getElementById('qaForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const question = document.getElementById('question').value.trim();
+      const submitBtn = document.getElementById('submitBtn');
+      const buttonText = document.getElementById('buttonText');
+      const loading = document.getElementById('loading');
+      const responseBox = document.getElementById('responseBox');
+      const responseText = document.getElementById('responseText');
+
+      if (!question) {
+        alert('Please enter a question');
+        return;
+      }
+
+      responseBox.classList.remove('show', 'error');
+      loading.classList.add('show');
+      submitBtn.disabled = true;
+      buttonText.textContent = 'Processing...';
+
+      try {
+        const response = await fetch(`${API_URL}/generate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question })
+        });
+
+        const data = await response.json();
+
+        loading.classList.remove('show');
+        submitBtn.disabled = false;
+        buttonText.textContent = 'Ask Question';
+        responseBox.classList.add('show');
+
+        if (response.ok) {
+          responseText.textContent = data.response;
+        } else {
+          responseBox.classList.add('error');
+          responseText.textContent = data.detail || 'An error occurred';
+        }
+      } catch (error) {
+        loading.classList.remove('show');
+        submitBtn.disabled = false;
+        buttonText.textContent = 'Ask Question';
+        responseBox.classList.add('show', 'error');
+        responseText.textContent = `Error: ${error.message}. Make sure the server is running!`;
+      }
+    });
+
+    // Ctrl+Enter shortcut
+    document.getElementById('question').addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('qaForm').dispatchEvent(new Event('submit'));
+      }
+    });
+  </script>
+</body>
+</html>
